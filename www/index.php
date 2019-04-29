@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 require "conf.inc.php";
 use Core\Routing;
 

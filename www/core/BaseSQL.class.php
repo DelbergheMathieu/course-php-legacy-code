@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace Core;
 
 class BaseSQL
@@ -18,7 +19,7 @@ class BaseSQL
         $this->table = get_called_class();
     }
 
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
         $this->getOneBy(["id" => $id], true);
@@ -29,7 +30,7 @@ class BaseSQL
      * @param bool $object if it will return an array of results ou an object
      * @return mixed
      */
-    public function getOneBy(array $where, $object = false)
+    public function getOneBy(array $where, bool $object = false):array
     {
         $sqlWhere = [];
         foreach ($where as $key => $value) {
