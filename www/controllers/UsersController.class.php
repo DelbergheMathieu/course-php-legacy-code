@@ -1,8 +1,8 @@
 <?php
+namespace Controllers;
 
 class UsersController
 {
-
     public function defaultAction()
     {
         echo "users default";
@@ -25,7 +25,6 @@ class UsersController
         $data = $GLOBALS["_" . $method];
 
         if ($_SERVER['REQUEST_METHOD'] == $method && !empty($data)) {
-
             $validator = new Validator($form, $data);
             $form["errors"] = $validator->errors;
 
@@ -36,24 +35,20 @@ class UsersController
                 $user->setPwd($data["pwd"]);
                 $user->save();
             }
-
         }
 
         $v = new View("addUser", "front");
         $v->assign("form", $form);
-
     }
 
     public function loginAction()
     {
-
         $user = new Users();
         $form = $user->getLoginForm();
 
         $method = strtoupper($form["config"]["method"]);
         $data = $GLOBALS["_" . $method];
         if ($_SERVER['REQUEST_METHOD'] == $method && !empty($data)) {
-
             $validator = new Validator($form, $data);
             $form["errors"] = $validator->errors;
 
@@ -61,18 +56,14 @@ class UsersController
                 $token = md5(substr(uniqid() . time(), 4, 10) . "mxu(4il");
                 // TODO: connexion
             }
-
         }
 
         $v = new View("loginUser", "front");
         $v->assign("form", $form);
-
     }
 
     public function forgetPasswordAction()
     {
-
         $v = new View("forgetPasswordUser", "front");
-
     }
 }

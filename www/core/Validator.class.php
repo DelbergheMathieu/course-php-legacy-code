@@ -1,22 +1,20 @@
 <?php
+namespace Core;
+
 class Validator
 {
-
     public $errors = [];
 
     public function __construct($config, $data)
     {
-
         if (count($data) != count($config["data"])) {
             die("Tentative : faille XSS");
         }
 
         foreach ($config["data"] as $name => $info) {
-
             if (!isset($data[$name])) {
                 die("Tentative : faille XSS");
             } else {
-
                 if (($info["required"] ?? false) && !self::notEmpty($data[$name])) {
                     $this->errors[] = $info["error"];
                 }
@@ -35,14 +33,11 @@ class Validator
 
                 if (isset($info["confirm"]) && $data[$name] != $data[$info["confirm"]]) {
                     $this->errors[] = $info["error"];
-                } else if ($info["type"] == "password" && !self::checkPassword($data[$name])) {
+                } elseif ($info["type"] == "password" && !self::checkPassword($data[$name])) {
                     $this->errors[] = $info["error"];
                 }
-
             }
-
         }
-
     }
 
     public static function notEmpty($string)
@@ -72,5 +67,4 @@ class Validator
             preg_match("#[A-Z]#", $string) &&
             preg_match("#[0-9]#", $string));
     }
-
 }

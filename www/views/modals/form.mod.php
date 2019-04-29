@@ -1,6 +1,6 @@
 <?php $data = ($config["config"]["method"]=="POST")?$_POST:$_GET; ?>
 
-<?php if( !empty($config["errors"])):?>
+<?php if (!empty($config["errors"])):?>
 <div class="alert alert-danger">
     <ul>
         <?php foreach ($config["errors"] as $errors):?>
@@ -22,9 +22,11 @@
 
     <div class="form-group">
         <div class="form-label-group">
-            <?php if($value["type"]=="text" || $value["type"]=="email" || $value["type"]=="password" ):?>
+            <?php if ($value["type"]=="text" || $value["type"]=="email" || $value["type"]=="password"):?>
 
-            <?php if($value["type"]=="password" ) unset($data[$key]); ?>
+            <?php if ($value["type"]=="password") {
+    unset($data[$key]);
+} ?>
 
 
             <input type="<?php echo $value["type"];?>" name="<?php echo $key;?>"
@@ -47,7 +49,7 @@
       <input type=" submit" class="btn btn-primary btn-block" value="<?php echo $config["config"]["submit"];?>">
 
 
-                <?php if( !empty($config["config"]["reset"])):?>
+                <?php if (!empty($config["config"]["reset"])):?>
                 <input type="reset" class="btn btn-danger btn-block" value="<?php echo $config["config"]["reset"];?>">
                 <?php endif;?>
 

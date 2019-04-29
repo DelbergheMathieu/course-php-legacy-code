@@ -1,7 +1,8 @@
 <?php
+namespace Core;
+
 class BaseSQL
 {
-
     private $pdo;
     private $table;
 
@@ -21,7 +22,6 @@ class BaseSQL
     {
         $this->id = $id;
         $this->getOneBy(["id" => $id], true);
-
     }
 
     /**
@@ -31,7 +31,6 @@ class BaseSQL
      */
     public function getOneBy(array $where, $object = false)
     {
-
         $sqlWhere = [];
         foreach ($where as $key => $value) {
             $sqlWhere[] = $key . "=:" . $key;
@@ -47,12 +46,10 @@ class BaseSQL
 
         $query->execute($where);
         return $query->fetch();
-
     }
 
     public function save()
     {
-
         $dataObject = get_object_vars($this);
         $dataChild = array_diff_key($dataObject, get_class_vars(get_class()));
 
@@ -63,23 +60,18 @@ class BaseSQL
 
             $query = $this->pdo->prepare($sql);
             $query->execute($dataChild);
-
         } else {
             $sqlUpdate = [];
             foreach ($dataChild as $key => $value) {
                 if ($key != "id") {
                     $sqlUpdate[] = $key . "=:" . $key;
                 }
-
             }
 
             $sql = "UPDATE " . $this->table . " SET " . implode(",", $sqlUpdate) . " WHERE id=:id";
 
             $query = $this->pdo->prepare($sql);
             $query->execute($dataChild);
-
         }
-
     }
-
 }

@@ -1,7 +1,8 @@
 <?php
+namespace Models;
+
 class Users extends BaseSQL
 {
-
     public $id = null;
     public $firstname;
     public $lastname;
@@ -103,5 +104,4 @@ class Users extends BaseSQL
 
         ];
     }
-
 }

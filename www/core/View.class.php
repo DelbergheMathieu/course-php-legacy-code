@@ -1,7 +1,8 @@
 <?php
+namespace Core;
+
 class View
 {
-
     private $v;
     private $t;
     private $data = [];
@@ -30,7 +31,6 @@ class View
         } else {
             die("Attention le fichier template n'existe pas " . $templatePath);
         }
-
     }
 
     public function addModal($modal, $config)
