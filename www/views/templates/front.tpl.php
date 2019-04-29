@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,12 +20,12 @@
     <!-- Custom styles for this template-->
     <link href="public/css/sb-admin.css" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body class="bg-dark">
+<body class="bg-dark">
 
     <div class="container">
-      <?php include $this->v;?>
+        <?php include $this->v;?>
     </div>
 
     <!-- Bootstrap core JavaScript-->
@@ -35,6 +35,6 @@
     <!-- Core plugin JavaScript-->
     <script src="public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  </body>
+</body>
 
 </html>
