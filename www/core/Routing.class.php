@@ -20,7 +20,7 @@ class Routing
             return ["c" => null, "a" => null, "cPath" => null];
         }
 
-        return ["c" => '\\Controllers\\'.$c, "a" => $a, "cPath" => $cPath];
+        return ["c" => $c, "a" => $a, "cPath" => $cPath];
     }
 
     public static function getSlug(string $c, string $a):string

@@ -28,7 +28,7 @@ class BaseSQL
     /**
      * @param array $where the where clause
      * @param bool $object if it will return an array of results ou an object
-     * @return mixed
+     * @return array
      */
     public function getOneBy(array $where, bool $object = false):array
     {
