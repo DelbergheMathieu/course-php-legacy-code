@@ -6,8 +6,8 @@ use Core\Routing;
 function myAutoloader($class)
 {
     $classname = substr($class, strpos($class, '\\') + 1);
-    $classPath = "Core/" . $classname . ".class.php";
-    $classModel = "Models/" . $classname . ".class.php";
+    $classPath = "Core/" . $classname . ".php";
+    $classModel = "Models/" . $classname . ".php";
     if (file_exists($classPath)) {
         include $classPath;
     } elseif (file_exists($classModel)) {

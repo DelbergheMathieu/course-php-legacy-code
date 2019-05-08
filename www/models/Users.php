@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 namespace Models;
 
-class Users extends BaseSQL
+class Users
 {
     public $id = null;
     public $firstname;
