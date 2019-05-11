@@ -2,107 +2,49 @@
 declare(strict_types = 1);
 namespace Models;
 
+use ValueObject\UserEmail;
+use ValueObject\UserIdentity;
+use ValueObject\UserPassword;
+use ValueObject\UserId;
+
 class Users
 {
-    public $id = null;
-    public $firstname;
-    public $lastname;
-    public $email;
-    public $pwd;
-    public $role = 1;
-    public $status = 0;
-
-    public function __construct()
+    private $uid;
+    private $userIdentity;
+    private $userEmail;
+    private $userPassword;
+    private $role;
+    private $status;
+    public function __construct(UserIdentity $userIdentity, UserEmail $userEmail, UserPassword $userPassword)
     {
-        parent::__construct();
+        $this->userIdentity = $userIdentity;
+        $this->userEmail = $userEmail;
+        $this->userPassword = $userPassword;
+        $this->role = 1;
+        $this->status = 0;
     }
-
-    public function setFirstname(string $firstname)
+    public function userIdentity(): UserIdentity
     {
-        $this->firstname = ucwords(strtolower(trim($firstname)));
+        return $this->userIdentity;
     }
-    public function setLastname(string $lastname)
+    public function userEmail(): UserEmail
     {
-        $this->lastname = strtoupper(trim($lastname));
+        return $this->userEmail;
     }
-    public function setEmail(string $email)
+    public function userPassword(): UserPassword
     {
-        $this->email = strtolower(trim($email));
+        return $this->userPassword;
     }
-    public function setPwd(string $pwd)
+    public function role(): int
     {
-        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        return $this->role;
     }
-    public function setRole(string $role)
+    public function status() : int
     {
-        $this->role = $role;
+        return $this->status;
     }
-    public function setStatus(string $status)
+    public function uid() : uid
     {
-        $this->status = $status;
-    }
-
-    public function getRegisterForm(): array
-    {
-        return [
-            "config" => [
-                "method" => "POST",
-                "action" => Routing::getSlug("Users", "save"),
-                "class" => "",
-                "id" => "",
-                "submit" => "S'inscrire",
-                "reset" => "Annuler"],
-
-            "data" => [
-
-                "firstname" => [
-                    "type" => "text",
-                    "placeholder" => "Votre Prénom",
-                    "required" => true,
-                    "class" => "form-control",
-                    "id" => "firstname",
-                    "minlength" => 2,
-                    "maxlength" => 50,
-                    "error" => "Le prénom doit faire entre 2 et 50 caractères",
-                ],
-
-                "lastname" => ["type" => "text", "placeholder" => "Votre nom", "required" => true, "class" => "form-control", "id" => "lastname", "minlength" => 2, "maxlength" => 100,
-                    "error" => "Le nom doit faire entre 2 et 100 caractères"],
-
-                "email" => ["type" => "email", "placeholder" => "Votre email", "required" => true, "class" => "form-control", "id" => "email", "maxlength" => 250,
-                    "error" => "L'email n'est pas valide ou il dépasse les 250 caractères"],
-
-                "pwd" => ["type" => "password", "placeholder" => "Votre mot de passe", "required" => true, "class" => "form-control", "id" => "pwd", "minlength" => 6,
-                    "error" => "Le mot de passe doit faire au minimum 6 caractères avec des minuscules, majuscules et chiffres"],
-
-                "pwdConfirm" => ["type" => "password", "placeholder" => "Confirmation", "required" => true, "class" => "form-control", "id" => "pwdConfirm", "confirm" => "pwd", "error" => "Les mots de passe ne correspondent pas"],
-
-            ],
-
-        ];
-    }
-
-    public function getLoginForm(): array
-    {
-        return [
-            "config" => [
-                "method" => "POST",
-                "action" => "",
-                "class" => "",
-                "id" => "",
-                "submit" => "Se connecter",
-                "reset" => "Annuler"],
-
-            "data" => [
-
-                "email" => ["type" => "email", "placeholder" => "Votre email", "required" => true, "class" => "form-control", "id" => "email",
-                    "error" => "L'email n'est pas valide"],
-
-                "pwd" => ["type" => "password", "placeholder" => "Votre mot de passe", "required" => true, "class" => "form-control", "id" => "pwd",
-                    "error" => "Veuillez préciser un mot de passe"],
-
-            ],
-
-        ];
+        return $this->uid();
     }
 }

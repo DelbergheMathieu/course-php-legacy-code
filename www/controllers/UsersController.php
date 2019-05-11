@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 namespace Controller;
 
+use Models\Users;
+
 class UsersController
 {
     public function defaultAction()

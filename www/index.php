@@ -8,10 +8,16 @@ function myAutoloader($class)
     $classname = substr($class, strpos($class, '\\') + 1);
     $classPath = "Core/" . $classname . ".php";
     $classModel = "Models/" . $classname . ".php";
+    $classValueObject = "ValueObject/" . $classname . ".php";
+    $classRepository = "Repository/" . $classname . ".php";
     if (file_exists($classPath)) {
         include $classPath;
     } elseif (file_exists($classModel)) {
         include $classModel;
+    } elseif (file_exists($classValueObject)) {
+        include $classValueObject;
+    } elseif (file_exists($classRepository)) {
+        include $classRepository;
     }
 }
 

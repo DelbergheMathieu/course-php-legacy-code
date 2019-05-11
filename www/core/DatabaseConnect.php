@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 namespace Core;
-use core\DatabaseInterface;
+
+use Core\DatabaseInterface;
 use ValueObject\DatabaseDriver;
 use ValueObject\DatabaseHost;
 use ValueObject\DatabaseUser;
@@ -16,7 +17,7 @@ class DatabaseConnect implements DatabaseInterface
     public function __construct(DatabaseDriver $DatabaseDriver, DatabaseHost $DatabaseHost, DatabaseName $databaseName, DatabaseUser $databaseUser, DatabasePassword $databasePassword)
     {
         try {
-            $this->pdo = new PDO($DatabaseDriver->toString() . ":DatabaseHost=" . $DatabaseHost->toString() . ";dbname=" . $databaseName->toString(), $databaseUser->toString(), $databasePassword->toString());
+            $this->pdo = new PDO($DatabaseDriver->toString() . ":host=" . $DatabaseHost->toString() . ";dbname=" . $databaseName->toString(), $databaseUser->toString(), $databasePassword->toString());
         } catch (Exception $e) {
             die("Erreur SQL : " . $e->getMessage());
         }
