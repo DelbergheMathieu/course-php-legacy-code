@@ -18,7 +18,7 @@ use Core\DatabaseConnect;
 use Core\DatabaseInterface;
 
 return[
-    DatabaseInterface::class => function($container) {
+    DatabaseInterface::class => function ($container) {
         $host = $container['config']['database']['host'];
         $driver = $container['config']['database']['driver'];
         $name = $container['config']['database']['name'];
@@ -27,17 +27,15 @@ return[
 
         return new DatabaseConnect(new DatabaseDriver($driver), new DatabaseHost($host), new DatabaseName($name), new DatabaseUser($user), new DatabasePassword($password));
     },
-    UsersController::class => function($container) {
-
+    UsersController::class => function ($container) {
         $userRepository = $container[UserRepository::class]($container);
         return new UsersController($userRepository);
-
     },
-    PagesController::class => function($container) {
+    PagesController::class => function ($container) {
         return new PagesController();
     },
 
-    UserRepository::class => function($container) {
+    UserRepository::class => function ($container) {
         $DatabaseConnect = $container[DatabaseInterface::class]($container);
         return new UserRepository($DatabaseConnect);
     }
